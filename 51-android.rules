@@ -295,6 +295,14 @@ ATTR{idProduct}=="61f9", SYMLINK+="android_adb"
 GOTO="android_usb_rule_match"
 LABEL="not_LG"
 
+#	Meizu
+ATTR{idVendor}!="2a45”, GOTO="not_Meizu”
+ENV{adb_user}="yes"
+#		MX6
+ATTR{idProduct}==“0c02”, SYMLINK+="android_adb"
+GOTO="android_usb_rule_match"
+LABEL="not_Meizu”
+
 #	Micromax
 ATTR{idVendor}!="2a96", GOTO="not_Micromax"
 ENV{adb_user}="yes"
@@ -366,6 +374,9 @@ ATTR{idVendor}=="1d4d", ENV{adb_user}="yes"
 
 #	Philips
 ATTR{idVendor}=="0471", ENV{adb_user}="yes"
+
+# Pico i.MX7 Dual Development Board
+SUBSYSTEM=="usb", ATTR{idVendor}=="18d1", ATTR{idProduct}=="4ee7", MODE="0660", GROUP="plugdev", SYMLINK+="android%n"%
 
 #	PMC-Sierra
 ATTR{idVendor}=="04da", ENV{adb_user}="yes"
